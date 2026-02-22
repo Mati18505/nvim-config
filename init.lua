@@ -13,6 +13,23 @@ vim.opt.clipboard = "unnamedplus"
 require("config.lazy")
 require("config.lsp")
 
+-- tree-sitter
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = '*',  -- wszystkie pliki, lub {'cpp','lua','python'}
+  callback = function()
+    -- fold
+    vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+    vim.wo[0][0].foldmethod = 'expr'
+
+    -- indent
+    vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+  end,
+})
+
+vim.opt.shiftwidth = 2
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+
 -- Skróty klawiszowe
 vim.api.nvim_set_keymap('i', 'kj', '<Esc>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<A-u>', ':UndotreeToggle<CR>', { noremap = true, silent = true })
