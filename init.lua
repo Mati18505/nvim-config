@@ -11,6 +11,7 @@ vim.opt.relativenumber = true
 vim.opt.clipboard = "unnamedplus"
 
 require("config.lazy")
+require("config.lsp")
 
 -- Skróty klawiszowe
 vim.api.nvim_set_keymap('i', 'kj', '<Esc>', { noremap = true })
