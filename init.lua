@@ -8,6 +8,8 @@ call plug#end()
 vim.g.mapleader = " "
 vim.opt.relativenumber = true
 vim.opt.clipboard = "unnamedplus"
+vim.o.ignorecase = true
+vim.o.smartcase = true
 
 require("config.lazy")
 require("config.lsp")
