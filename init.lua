@@ -1,9 +1,3 @@
-vim.cmd [[
-call plug#begin()
-Plug 'ThePrimeagen/vim-be-good'
-call plug#end()
-]]
-
 vim.g.mapleader = " "
 vim.opt.relativenumber = true
 vim.opt.clipboard = "unnamedplus"
@@ -28,9 +22,15 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
+-- indents
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
+vim.opt.expandtab = true
+
+-- folds
+vim.opt.foldenable = false
+vim.opt.foldlevelstart = 99
 
 -- Skróty klawiszowe
 vim.api.nvim_set_keymap('i', 'kj', '<Esc>', { noremap = true })
