@@ -6,12 +6,13 @@ call plug#end()
 ]]
 
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 vim.opt.relativenumber = true
 vim.opt.clipboard = "unnamedplus"
 
 require("config.lazy")
 require("config.lsp")
+
+vim.keymap.set("n", "<leader>pv", vim.cmd.Oil)
 
 -- tree-sitter
 vim.api.nvim_create_autocmd('FileType', {
