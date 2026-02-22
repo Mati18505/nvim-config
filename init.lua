@@ -1,7 +1,6 @@
 vim.cmd [[
 call plug#begin()
 Plug 'ThePrimeagen/vim-be-good'
-Plug 'mbbill/undotree'
 call plug#end()
 ]]
 
@@ -35,7 +34,6 @@ vim.opt.softtabstop = 2
 
 -- Skróty klawiszowe
 vim.api.nvim_set_keymap('i', 'kj', '<Esc>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<A-u>', ':UndotreeToggle<CR>', { noremap = true, silent = true })
 
 -- Undo persistent
 if vim.fn.has("persistent_undo") == 1 then
