@@ -3,12 +3,14 @@ return {
   lazy = false,
   build = ':TSUpdate',
   opts = {
-    ensure_installed = { 'help', 'rust', 'cpp', 'javascript', 'typescript', 'lua', 'zig' },
+    ensure_installed = {},
+    auto_install = true,
     highlight = { enable = true },
     indent = { enable = true },
     folds = { enable = true },
   },
   config = function(_, opts)
     require("nvim-treesitter").setup(opts)
+    require'nvim-treesitter'.install { 'rust', 'cpp', 'javascript', 'typescript', 'lua', 'zig', 'go', 'python' }
   end,
 }
