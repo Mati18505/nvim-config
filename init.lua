@@ -1,13 +1,6 @@
-vim.g.mapleader = " "
-vim.opt.relativenumber = true
-vim.opt.clipboard = "unnamedplus"
-vim.o.ignorecase = true
-vim.o.smartcase = true
-
+require("set")
 require("config.lazy")
 require("config.lsp")
-
-vim.keymap.set("n", "<leader>pv", vim.cmd.Oil)
 
 -- tree-sitter
 vim.api.nvim_create_autocmd('FileType', {
@@ -21,25 +14,6 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
   end,
 })
-
--- indents
-vim.opt.shiftwidth = 2
-vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
-vim.opt.expandtab = true
-
--- folds
-vim.opt.foldenable = false
-vim.opt.foldlevelstart = 99
-
--- Skróty klawiszowe
-vim.api.nvim_set_keymap('i', 'kj', '<Esc>', { noremap = true })
-
--- Undo persistent
-if vim.fn.has("persistent_undo") == 1 then
-    vim.opt.undodir = vim.fn.expand("$HOME/.undodir")
-    vim.opt.undofile = true
-end
 
 function Transparent(color)
     -- set proper colorscheme
