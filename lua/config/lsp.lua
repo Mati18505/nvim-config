@@ -5,6 +5,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- Buffer local mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     local opts = { buffer = ev.buf, silent = true }
+    local ft = vim.api.nvim_buf_get_option(opts.buffer, "filetype")
+    if ft ~= "rust" then
+      opts.desc = "See available code actions"
+      keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts) -- see available code actions, in visual mode will apply to selection
+
+      opts.desc = "Show documentation for what is under cursor"
+      keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
+    end
+
 
     -- set keybinds
     opts.desc = "Show LSP references"
@@ -21,9 +30,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     opts.desc = "Show LSP type definitions"
     keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts) -- show lsp type definitions
-
-    opts.desc = "See available code actions"
-    keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts) -- see available code actions, in visual mode will apply to selection
 
     opts.desc = "Smart rename"
     keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts) -- smart rename
@@ -43,9 +49,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     keymap.set("n", "]d", function()
       vim.diagnostic.jump({ count = 1, float = true })
     end, opts) -- jump to next diagnostic in buffer
-
-    opts.desc = "Show documentation for what is under cursor"
-    keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
 
     opts.desc = "Restart LSP"
     keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary

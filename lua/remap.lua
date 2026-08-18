@@ -6,6 +6,7 @@ vim.keymap.set("n", "-", vim.cmd.Oil)
 
 vim.keymap.set("i", "kj", "<Esc>", { noremap = true })
 vim.keymap.set("i", "yn", "<Esc>", { noremap = true })
+vim.keymap.set("i", ";n", "<Esc>", { noremap = true })
 
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setqflist)
 vim.keymap.set("n", "<leader>Q", vim.diagnostic.setloclist)
@@ -53,7 +54,15 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>")
+vim.keymap.set("n", "<leader>c", vim.cmd.only);
 
 vim.keymap.set("n", "<leader><leader>", function()
- vim.cmd "so"
+  local ok, err = pcall(vim.cmd, "source .session.vim")
+  if not ok then
+    print("Error while loading session file: " .. err)
+  end
+end)
+
+vim.keymap.set("n", "<leader>t", function()
+  vim.treesitter.start()
 end)

@@ -4,8 +4,8 @@ return {
 	---@type oil.SetupOpts
 	opts = {
 		keymaps = {
-			["<leader>p"] = "actions.preview",
-			["<C-p>"] = function ()
+			["<leader>pr"] = "actions.preview",
+			["<leader>pp"] = function ()
 				require('telescope.builtin').git_files()
 			end
 		}
